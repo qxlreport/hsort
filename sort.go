@@ -38,12 +38,6 @@ func Sort(record Record, less Less, outWriter io.Writer, tempFileName string, pa
 	if err != nil {
 		return
 	}
-	temp.Close()
-
-	temp, err = os.OpenFile(tempFileName, os.O_WRONLY|os.O_APPEND, 0644)
-	if err != nil {
-		return
-	}
 	defer temp.Close()
 
 	if partBufferSize == 0 {
@@ -106,7 +100,7 @@ func Sort(record Record, less Less, outWriter io.Writer, tempFileName string, pa
 		if err != nil {
 			return err
 		}
-		recsize := binary.LittleEndian.Uint32((*buf)[:4])
+		recsize := binary.LittleEndian.Uint32((*buf)
 		if recsize == 0 {
 			return io.EOF
 		}
