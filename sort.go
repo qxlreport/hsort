@@ -100,7 +100,7 @@ func Sort(record Record, less Less, outWriter io.Writer, tempFileName string, pa
 		if err != nil {
 			return err
 		}
-		recsize := binary.LittleEndian.Uint32((*buf)
+		recsize := binary.LittleEndian.Uint32(*buf)
 		if recsize == 0 {
 			return io.EOF
 		}
